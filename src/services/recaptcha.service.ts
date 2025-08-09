@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { recaptchaHeadlessService } from './recaptcha-headless.service';
-import { recaptchaBypassService } from './recaptcha-bypass.service';
+import { recaptchaHeadlessService } from './recaptcha-headless.service.js';
+import { recaptchaBypassService } from './recaptcha-bypass.service.js';
 
 export interface RecaptchaResponse {
   success: boolean;

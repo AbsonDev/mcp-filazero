@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import config from '../config/environment';
+import config from '../config/environment.js';
 
 export class FilazeroApiService {
   private client: AxiosInstance;

@@ -1,5 +1,5 @@
-import { apiService } from './api.service';
-import { FeedbackRequest } from '../models/filazero.types';
+import { apiService } from './api.service.js';
+import { FeedbackRequest } from '../models/filazero.types.js';
 
 export class FeedbackService {
   

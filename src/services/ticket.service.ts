@@ -1,5 +1,5 @@
-import { apiService } from './api.service';
-import { recaptchaService } from './recaptcha.service';
+import { apiService } from './api.service.js';
+import { recaptchaService } from './recaptcha.service.js';
 import { 
   TicketCreateRequest, 
   Ticket, 

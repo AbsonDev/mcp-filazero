@@ -1,5 +1,5 @@
-import { apiService } from './api.service';
-import { Terminal, Service, CompanyTemplate } from '../models/filazero.types';
+import { apiService } from './api.service.js';
+import { Terminal, Service, CompanyTemplate } from '../models/filazero.types.js';
 
 export class TerminalService {
   

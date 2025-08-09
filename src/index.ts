@@ -7,10 +7,10 @@ import {
   ErrorCode
 } from '@modelcontextprotocol/sdk/types.js';
 
-import { terminalService } from './services/terminal.service';
-import { ticketService } from './services/ticket.service';
-import { feedbackService } from './services/feedback.service';
-import config from './config/environment';
+import { terminalService } from './services/terminal.service.js';
+import { ticketService } from './services/ticket.service.js';
+import { feedbackService } from './services/feedback.service.js';
+import config from './config/environment.js';
 import http from 'http';
 
 // Criar servidor MCP
