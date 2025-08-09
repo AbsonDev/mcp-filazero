@@ -23,6 +23,7 @@
     "railway:dev": "npm run build && npm run railway",
     "railway:install": "npm install && npm run build",
     "railway:health": "curl -f http://localhost:3001/health || echo 'Health check não disponível'",
+    "railway:debug": "node railway-debug.js",
     "health": "curl -f http://localhost:3001/health || node -e \"console.log('Health check endpoint not available')\""
   },
   "keywords": [

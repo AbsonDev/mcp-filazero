@@ -16,8 +16,7 @@ console.log('🚂 Iniciando Filazero MCP Server no Railway...');
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 process.env.FILAZERO_API_URL = process.env.FILAZERO_API_URL || 'https://api.staging.filazero.net/';
 process.env.PORT = process.env.PORT || '3000';
-process.env.HEALTH_PORT = process.env.HEALTH_PORT || '3001';
-process.env.ENABLE_HEALTH_CHECK = 'true';
+// Health check integrado no servidor principal - não precisa de porta separada
 process.env.RAILWAY_MODE = 'true';
 
 // Log das configurações do Railway
@@ -25,7 +24,6 @@ console.log('🔧 Configurações do Railway:');
 console.log(`   - Ambiente: ${process.env.NODE_ENV}`);
 console.log(`   - API URL: ${process.env.FILAZERO_API_URL}`);
 console.log(`   - Porta: ${process.env.PORT}`);
-console.log(`   - Health Port: ${process.env.HEALTH_PORT}`);
 console.log(`   - Railway URL: ${process.env.RAILWAY_STATIC_URL || 'Será gerada'}`);
 
 // Verificar se o build existe
@@ -79,10 +77,10 @@ function startHttpServer() {
     process.exit(1);
   });
   
-  // Health check adicional para Railway
+  // Health check integrado no servidor principal - verificação via HTTP
   setTimeout(() => {
-    setupRailwayHealthCheck();
-  }, 5000);
+    testMainServerHealth();
+  }, 3000);
   
   // Graceful shutdown melhorado para Railway
   const gracefulShutdown = (signal) => {
@@ -106,19 +104,20 @@ function startHttpServer() {
   process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 }
 
-function setupRailwayHealthCheck() {
-  const healthPort = parseInt(process.env.HEALTH_PORT || '3001');
+function testMainServerHealth() {
+  const port = parseInt(process.env.PORT || '3000');
   
-  // Verificar se health check está respondendo
+  // Verificar se servidor principal está respondendo
   const checkHealth = () => {
-    const req = http.get(`http://localhost:${healthPort}/health`, (res) => {
+    const req = http.get(`http://localhost:${port}/health`, (res) => {
       if (res.statusCode === 200) {
-        console.log('✅ Health check do Railway funcionando!');
+        console.log('✅ Servidor HTTP principal funcionando!');
+        console.log(`🌐 Health check disponível em: http://localhost:${port}/health`);
       }
     });
     
     req.on('error', (error) => {
-      console.log('⏳ Aguardando health check...');
+      console.log('⏳ Aguardando servidor HTTP principal...');
     });
     
     req.setTimeout(5000);
@@ -128,7 +127,7 @@ function setupRailwayHealthCheck() {
   setInterval(checkHealth, 30000);
   
   // Primeira verificação
-  setTimeout(checkHealth, 2000);
+  setTimeout(checkHealth, 1000);
 }
 
 // Log de inicialização específico do Railway

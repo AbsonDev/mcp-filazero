@@ -13,6 +13,9 @@ import config from './config/environment.js';
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000');
 
+// Log da porta para debugging
+console.error(`🔧 Configuração de porta: ${PORT} (Railway: ${process.env.PORT ? 'detectado' : 'padrão'})`);
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -24,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Health check endpoint
+// Health check endpoint (integrado na porta principal)
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -34,9 +37,19 @@ app.get('/health', (req, res) => {
     environment: config.environment,
     apiUrl: config.apiUrl,
     type: 'http-mcp-server',
+    port: PORT,
     memoryUsage: process.memoryUsage(),
-    pid: process.pid
+    pid: process.pid,
+    railway: {
+      static_url: process.env.RAILWAY_STATIC_URL || null,
+      environment: process.env.RAILWAY_ENVIRONMENT || null
+    }
   });
+});
+
+// Health check adicional na raiz para Railway
+app.get('/ping', (req, res) => {
+  res.json({ status: 'pong', timestamp: new Date().toISOString() });
 });
 
 // MCP Tools endpoint para Cursor
@@ -413,18 +426,24 @@ app.use((req, res) => {
 // Inicializar servidor
 async function startHttpServer() {
   try {
+    // Log de inicialização
+    console.error('⚡ Inicializando servidor HTTP...');
+    
     const server = app.listen(PORT, '0.0.0.0', () => {
       console.error('🌐 Filazero HTTP MCP Server iniciado!');
       console.error(`📡 Ambiente: ${config.environment}`);
       console.error(`🔗 API URL: ${config.apiUrl}`);
       console.error(`🌐 HTTP Server: http://0.0.0.0:${PORT}`);
-      console.error(`🛠️ Endpoints disponíveis: /, /health, /tools, /execute/:tool, /mcp`);
+      console.error(`🛠️ Endpoints disponíveis: /, /health, /ping, /tools, /execute/:tool, /mcp`);
       console.error('💡 Servidor HTTP pronto para Cursor/navegador...');
       
       // Log adicional para Railway
       if (process.env.RAILWAY_STATIC_URL) {
         console.error(`🚂 Railway URL: ${process.env.RAILWAY_STATIC_URL}`);
       }
+      
+      // Log específico para debugging Railway
+      console.error('✅ READY - Servidor respondendo requisições HTTP');
     });
 
     // Graceful shutdown melhorado

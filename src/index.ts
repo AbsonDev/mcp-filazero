@@ -339,47 +339,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 });
 
-// Health check endpoint (para monitoramento em produção)
-function startHealthCheckServer() {
-  const healthServer = http.createServer((req, res) => {
-    if (req.url === '/health' && req.method === 'GET') {
-      const healthStatus = {
-        status: 'healthy',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-        version: '1.0.0',
-        environment: config.environment,
-        apiUrl: config.apiUrl,
-        memoryUsage: process.memoryUsage(),
-        pid: process.pid
-      };
-      
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(healthStatus, null, 2));
-    } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Not Found');
-    }
-  });
-  
-  const healthPort = parseInt(process.env.HEALTH_PORT || '3001');
-  healthServer.listen(healthPort, () => {
-    console.error(`🏥 Health check server rodando na porta ${healthPort}`);
-  });
-  
-  return healthServer;
-}
+// Health check removido - agora integrado no servidor HTTP principal
 
 // Função principal para inicializar o servidor
 async function main() {
   try {
     const transport = new StdioServerTransport();
     await server.connect(transport);
-    
-    // Iniciar health check server apenas em produção ou se explicitamente habilitado
-    if (config.environment === 'production' || process.env.ENABLE_HEALTH_CHECK === 'true') {
-      startHealthCheckServer();
-    }
     
     // Logs de inicialização
     console.error('🚀 Filazero MCP Server (Node.js) iniciado!');
