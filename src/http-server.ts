@@ -413,14 +413,39 @@ app.use((req, res) => {
 // Inicializar servidor
 async function startHttpServer() {
   try {
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.error('🌐 Filazero HTTP MCP Server iniciado!');
       console.error(`📡 Ambiente: ${config.environment}`);
       console.error(`🔗 API URL: ${config.apiUrl}`);
-      console.error(`🌐 HTTP Server: http://localhost:${PORT}`);
+      console.error(`🌐 HTTP Server: http://0.0.0.0:${PORT}`);
       console.error(`🛠️ Endpoints disponíveis: /, /health, /tools, /execute/:tool, /mcp`);
       console.error('💡 Servidor HTTP pronto para Cursor/navegador...');
+      
+      // Log adicional para Railway
+      if (process.env.RAILWAY_STATIC_URL) {
+        console.error(`🚂 Railway URL: ${process.env.RAILWAY_STATIC_URL}`);
+      }
     });
+
+    // Graceful shutdown melhorado
+    const gracefulShutdown = (signal: string) => {
+      console.error(`🛑 Recebido ${signal}, encerrando servidor HTTP gracefully...`);
+      
+      server.close(() => {
+        console.error('✅ Servidor HTTP encerrado com sucesso');
+        process.exit(0);
+      });
+      
+      // Force shutdown após 10 segundos
+      setTimeout(() => {
+        console.error('⚠️ Forçando encerramento...');
+        process.exit(1);
+      }, 10000);
+    };
+
+    process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+    process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
   } catch (error) {
     console.error('❌ Erro ao iniciar servidor HTTP:', error);
     process.exit(1);

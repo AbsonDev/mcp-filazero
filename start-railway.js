@@ -30,7 +30,7 @@ console.log(`   - Railway URL: ${process.env.RAILWAY_STATIC_URL || 'Será gerada
 
 // Verificar se o build existe
 const distPath = path.join(__dirname, 'dist');
-const indexPath = path.join(distPath, 'index.js');
+const indexPath = path.join(distPath, 'http-index.js');
 
 if (!fs.existsSync(indexPath)) {
   console.log('📦 Build não encontrado, compilando TypeScript...');
@@ -44,55 +44,66 @@ if (!fs.existsSync(indexPath)) {
   buildProcess.on('close', (code) => {
     if (code === 0) {
       console.log('✅ Build concluído com sucesso!');
-      startServer();
+      startHttpServer();
     } else {
       console.error('❌ Erro no build:', code);
       process.exit(1);
     }
   });
 } else {
-  console.log('✅ Build encontrado, iniciando servidor...');
-  startServer();
+  console.log('✅ Build encontrado, iniciando servidor HTTP...');
+  startHttpServer();
 }
 
-function startServer() {
-  console.log('🎯 Iniciando servidor MCP...');
+function startHttpServer() {
+  console.log('🌐 Iniciando servidor HTTP MCP para Railway...');
   
-  // Executar o servidor
-  const serverProcess = spawn('node', ['dist/index.js'], {
+  // Executar o servidor HTTP
+  const serverProcess = spawn('node', ['dist/http-index.js'], {
     stdio: 'inherit',
     shell: true,
     env: process.env
   });
   
   serverProcess.on('close', (code) => {
-    console.log(`🛑 Servidor encerrado com código: ${code}`);
-    // Em produção, tentar restart automático
+    console.log(`🛑 Servidor HTTP encerrado com código: ${code}`);
+    // Em produção, tentar restart automático apenas se não foi encerramento graceful
     if (process.env.NODE_ENV === 'production' && code !== 0) {
-      console.log('🔄 Tentando restart automático...');
-      setTimeout(() => startServer(), 5000);
+      console.log('🔄 Tentando restart automático em 5 segundos...');
+      setTimeout(() => startHttpServer(), 5000);
     }
   });
   
   serverProcess.on('error', (error) => {
-    console.error('❌ Erro ao iniciar servidor:', error);
+    console.error('❌ Erro ao iniciar servidor HTTP:', error);
+    process.exit(1);
   });
   
   // Health check adicional para Railway
   setTimeout(() => {
     setupRailwayHealthCheck();
-  }, 3000);
+  }, 5000);
   
-  // Graceful shutdown
-  process.on('SIGINT', () => {
-    console.log('🛑 Encerrando servidor gracefully...');
-    serverProcess.kill('SIGINT');
-  });
+  // Graceful shutdown melhorado para Railway
+  const gracefulShutdown = (signal) => {
+    console.log(`🛑 Recebido ${signal}, encerrando servidor HTTP gracefully...`);
+    
+    if (serverProcess) {
+      serverProcess.kill('SIGTERM');
+      
+      // Force kill após 10 segundos se não encerrar gracefully
+      setTimeout(() => {
+        console.log('⚠️ Forçando encerramento do servidor...');
+        serverProcess.kill('SIGKILL');
+        process.exit(0);
+      }, 10000);
+    } else {
+      process.exit(0);
+    }
+  };
   
-  process.on('SIGTERM', () => {
-    console.log('🛑 Encerrando servidor gracefully...');
-    serverProcess.kill('SIGTERM');
-  });
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 }
 
 function setupRailwayHealthCheck() {
