@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(env)",
+      "Bash(npm run build:*)",
+      "Bash(timeout:*)",
+      "Bash(kill:*)",
+      "Bash(find:*)",
+      "Bash(npm start)",
+      "Bash(node:*)",
+      "Bash(ENABLE_HEALTH_CHECK=false npm start)",
+      "Bash(git clone:*)",
+      "Bash(git config:*)",
+      "Bash(npm install:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(apt list:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "filazero-mcp-server",
+  "version": "1.0.0",
+  "description": "Servidor MCP para APIs Filazero - Versão Node.js/TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "watch": "nodemon --exec ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
+    "test": "npm run build && node dist/index.js",
+    "replit": "node start-replit.js",
+    "replit:dev": "npm run build && npm run replit",
+    "replit:install": "npm install && npm run build",
+    "railway": "node start-railway.js",
+    "railway:dev": "npm run build && npm run railway",
+    "railway:install": "npm install && npm run build",
+    "railway:health": "curl -f http://localhost:3001/health || echo 'Health check não disponível'",
+    "health": "curl -f http://localhost:3001/health || node -e \"console.log('Health check endpoint not available')\""
+  },
+  "keywords": [
+    "mcp",
+    "filazero",
+    "typescript",
+    "api",
+    "queue-management"
+  ],
+  "author": "Filazero Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.4",
+    "ts-node": "^10.9.2",
+    "nodemon": "^3.0.2",
+    "@types/axios": "^0.14.0",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "prettier": "^3.1.1"
+  }
+}

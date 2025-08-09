@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "filazero-nodejs": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "cwd": "C:\\Users\\ovg19\\Downloads\\FilazeroMcpServer\\filazero-mcp-nodejs",
+      "env": {
+        "NODE_ENV": "development",
+        "FILAZERO_API_URL": "https://api.dev.filazero.net/"
+      }
+    }
+  }
+}

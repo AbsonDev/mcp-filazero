@@ -1,0 +1,66 @@
+# Configuração do Replit para Filazero MCP Server
+modules = ["nodejs-18"]
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["npm", "start"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+exposeLocalhost = true
+
+[[ports]]
+localPort = 3001
+externalPort = 3001
+exposeLocalhost = true
+
+[env]
+NODE_ENV = "production"
+FILAZERO_API_URL = "https://api.staging.filazero.net/"
+PORT = "3000"
+HEALTH_PORT = "3001"
+ENABLE_HEALTH_CHECK = "true"
+
+[languages]
+
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx,*.mjs,*.cjs}"
+
+[languages.javascript.languageServer]
+start = "typescript-language-server --stdio"
+
+[deployment]
+build = ["npm", "run", "build"]
+run = ["npm", "start"]
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
+
+[unitTest]
+language = "nodejs"
+
+[debugger]
+support = true
+
+[debugger.interactive]
+transport = "localhost:9292"
+startCommand = ["dap-node"]
+
+[debugger.interactive.initializeMessage]
+command = "initialize"
+type = "request"
+
+[debugger.interactive.launchMessage]
+command = "launch"
+type = "request"
+program = "./dist/index.js"

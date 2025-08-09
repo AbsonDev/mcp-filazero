@@ -1,0 +1,6 @@
+module.exports = {
+  NODE_ENV: 'development',
+  FILAZERO_API_URL: 'https://api.dev.filazero.net/',
+  LOG_LEVEL: 'debug',
+  PORT: 3000
+};

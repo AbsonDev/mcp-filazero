@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "filazero-local-prod": {
+      "command": "powershell",
+      "args": ["-File", "start-local-prod.ps1"],
+      "cwd": "C:\\Users\\ovg19\\Downloads\\FilazeroMcpServer\\filazero-mcp-nodejs",
+      "env": {
+        "NODE_ENV": "development",
+        "FILAZERO_API_URL": "https://api.staging.filazero.net/",
+        "LOG_LEVEL": "debug"
+      }
+    },
+    "filazero-local-dev": {
+      "command": "powershell", 
+      "args": ["-File", "start-local-dev.ps1"],
+      "cwd": "C:\\Users\\ovg19\\Downloads\\FilazeroMcpServer\\filazero-mcp-nodejs",
+      "env": {
+        "NODE_ENV": "development",
+        "FILAZERO_API_URL": "https://api.dev.filazero.net/",
+        "LOG_LEVEL": "debug"
+      }
+    },
+    "filazero-direct": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "cwd": "C:\\Users\\ovg19\\Downloads\\FilazeroMcpServer\\filazero-mcp-nodejs",
+      "env": {
+        "NODE_ENV": "development",
+        "FILAZERO_API_URL": "https://api.staging.filazero.net/",
+        "LOG_LEVEL": "debug"
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  filazero-mcp:
+    build: .
+    image: filazero/mcp-server:latest
+    
+    container_name: filazero-mcp
+    restart: unless-stopped
+    
+    environment:
+      - NODE_ENV=production
+      - FILAZERO_API_URL=https://api.staging.filazero.net/
+      - LOG_LEVEL=info
+      - PORT=3000
+    
+    ports:
+      - "3000:3000"
+    
+    volumes:
+      - ./logs:/app/logs
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "filazero-nodejs-dev": {
+      "command": "npm",
+      "args": ["run", "dev"],
+      "cwd": "/mnt/c/Users/ovg19/Downloads/FilazeroMcpServer/filazero-mcp-nodejs",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}
