@@ -1,0 +1,47 @@
+# Dockerfile otimizado para Railway
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Instalar dependências do sistema necessárias
+RUN apk add --no-cache curl dumb-init
+
+# Copiar arquivos de configuração
+COPY package*.json ./
+COPY tsconfig.json ./
+
+# Instalar todas as dependências (build + runtime)
+RUN npm ci
+
+# Copiar código fonte
+COPY src/ src/
+
+# Build da aplicação
+RUN npm run build
+
+# Remover devDependencies após build
+RUN npm prune --production
+
+# Criar usuário não-root
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S filazero -u 1001 -G nodejs
+
+# Criar diretório de logs
+RUN mkdir -p logs && chown -R filazero:nodejs logs
+
+# Configurar usuário
+USER filazero
+
+# Expor portas
+EXPOSE 3000
+EXPOSE 3001
+
+# Health check mais simples
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:3001/health || exit 1
+
+# Usar dumb-init para melhor handling de sinais
+ENTRYPOINT ["dumb-init", "--"]
+
+# Comando de inicialização
+CMD ["node", "dist/index.js"]
