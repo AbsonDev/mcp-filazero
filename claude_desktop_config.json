@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "filazero-mcp": {
+      "command": "node",
+      "args": ["mcp-filazero-direct.mjs"],
+      "cwd": "C:\\Users\\ovg19\\Downloads\\FilazeroMcpServer\\filazero-mcp-nodejs",
+      "env": {
+        "FILAZERO_API_URL": "https://api.filazero.net/",
+        "NODE_ENV": "production",
+        "RAILWAY_BACKUP_URL": "https://mcp-filazero-production.up.railway.app"
+      }
+    }
+  }
+}

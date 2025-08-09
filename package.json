@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "Servidor MCP para APIs Filazero - Versão Node.js/TypeScript",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/http-index.js",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node --esm src/index.ts",
-    "start": "node dist/index.js",
+    "dev:http": "ts-node --esm src/http-index.ts",
+    "start": "node dist/http-index.js",
+    "start:http": "node dist/http-index.js",
     "watch": "nodemon --exec ts-node --esm src/index.ts",
+    "watch:http": "nodemon --exec ts-node --esm src/http-index.ts",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
     "test": "npm run build && node dist/index.js",
+    "test:http": "npm run build && node dist/http-index.js",
     "replit": "node start-replit.js",
     "replit:dev": "npm run build && npm run replit",
     "replit:install": "npm install && npm run build",
@@ -35,18 +39,22 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.5.0",
-    "axios": "^1.6.2",
-    "dotenv": "^16.3.1"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "@types/node": "^20.10.4",
-    "ts-node": "^10.9.2",
-    "nodemon": "^3.0.2",
     "@types/axios": "^0.14.0",
-    "eslint": "^8.55.0",
+    "@types/node": "^20.10.4",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
-    "prettier": "^3.1.1"
+    "eslint": "^8.55.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
