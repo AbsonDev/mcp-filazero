@@ -14,7 +14,9 @@
       "Bash(git config:*)",
       "Bash(npm install:*)",
       "Bash(dotnet restore:*)",
-      "Bash(apt list:*)"
+      "Bash(apt list:*)",
+      "Bash(ASPNETCORE_ENVIRONMENT=production timeout 10s node dist/http-index.js)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }
