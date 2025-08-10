@@ -29,7 +29,8 @@
       "Bash(pkill:*)",
       "Bash(ss:*)",
       "Bash(mkdir:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
