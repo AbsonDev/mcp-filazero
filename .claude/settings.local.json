@@ -27,7 +27,9 @@
       "WebFetch(domain:modelcontextprotocol.io)",
       "Bash(npm run start:mcp:*)",
       "Bash(pkill:*)",
-      "Bash(ss:*)"
+      "Bash(ss:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": []
   }
