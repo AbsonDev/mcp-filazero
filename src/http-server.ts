@@ -21,15 +21,31 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Logging middleware
+// Logging middleware detalhado para Railway debugging
 app.use((req, res, next) => {
-  console.error(`🌐 ${req.method} ${req.path}`);
+  const timestamp = new Date().toISOString();
+  const userAgent = req.get('User-Agent') || 'unknown';
+  const isRailwayHealthCheck = userAgent.includes('Railway') || 
+                               userAgent.includes('curl') || 
+                               userAgent.includes('wget') ||
+                               req.path === '/' || 
+                               req.path === '/health';
+  
+  if (isRailwayHealthCheck) {
+    console.error(`🚂 [${timestamp}] RAILWAY HEALTH CHECK: ${req.method} ${req.path} | IP: ${req.ip} | UA: ${userAgent}`);
+  } else {
+    console.error(`🌐 [${timestamp}] ${req.method} ${req.path} | IP: ${req.ip}`);
+  }
+  
   next();
 });
 
 // Health check endpoint (integrado na porta principal)
 app.get('/health', (req, res) => {
-  res.json({
+  // Log para debugging Railway health check
+  console.error(`💊 Health check request: ${req.method} ${req.url} from ${req.ip}`);
+  
+  const healthStatus = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
@@ -42,14 +58,25 @@ app.get('/health', (req, res) => {
     pid: process.pid,
     railway: {
       static_url: process.env.RAILWAY_STATIC_URL || null,
-      environment: process.env.RAILWAY_ENVIRONMENT || null
+      environment: process.env.RAILWAY_ENVIRONMENT || null,
+      port_detected: process.env.PORT || null
     }
-  });
+  };
+  
+  // Log da resposta
+  console.error(`💊 Health check response: ${JSON.stringify({status: healthStatus.status, uptime: healthStatus.uptime})}`);
+  
+  res.status(200).json(healthStatus);
 });
 
 // Health check adicional na raiz para Railway
 app.get('/ping', (req, res) => {
-  res.json({ status: 'pong', timestamp: new Date().toISOString() });
+  console.error(`🏓 Ping request: ${req.method} ${req.url} from ${req.ip}`);
+  res.status(200).json({ 
+    status: 'pong', 
+    timestamp: new Date().toISOString(),
+    ready: true 
+  });
 });
 
 // MCP Tools endpoint para Cursor
@@ -379,29 +406,37 @@ app.post('/mcp', async (req, res) => {
   }
 });
 
-// Documentação da API
+// Endpoint raiz otimizado para Railway health check
 app.get('/', (req, res) => {
-  res.json({
+  // Log para debugging Railway health check
+  console.error(`🔍 Health check request: ${req.method} ${req.url} from ${req.ip}`);
+  
+  // Resposta rápida e simples para Railway
+  const response = {
+    status: 'healthy',
     name: 'Filazero MCP Server HTTP',
     version: '1.0.0',
-    description: 'Servidor HTTP MCP para Cursor - igual Context7',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    ready: true,
+    environment: config.environment,
+    port: PORT,
     endpoints: {
-      'GET /': 'Esta documentação',
-      'GET /health': 'Status do servidor',
-      'GET /tools': 'Lista todas as tools disponíveis',
-      'POST /execute/:toolName': 'Executa uma tool específica',
-      'POST /mcp': 'Endpoint genérico para MCP (compatível Cursor)'
+      'GET /': 'Health check / Documentation',
+      'GET /health': 'Detailed health status',
+      'GET /ping': 'Simple ping pong',
+      'GET /tools': 'Lista todas as tools MCP',
+      'POST /mcp': 'Execute MCP tools'
     },
-    usage: {
-      'Cursor MCP': 'Configure URL: https://mcp-filazero-production.up.railway.app',
-      'Exemplo': 'POST /mcp { "tool": "get_terminal", "arguments": { "accessKey": "ABC123" } }'
-    },
-    tools: [
-      'get_terminal', 'create_ticket', 'get_ticket', 'get_queue_position',
-      'get_ticket_prevision', 'cancel_ticket', 'checkin_ticket',
-      'confirm_presence', 'update_feedback', 'get_service', 'get_company_template'
-    ]
-  });
+    mcp: {
+      tools_count: 11,
+      cursor_url: process.env.RAILWAY_STATIC_URL || 'Configure Railway URL',
+      usage: 'POST /mcp with {"tool": "tool_name", "arguments": {...}}'
+    }
+  };
+  
+  // Enviar resposta rapidamente
+  res.status(200).json(response);
 });
 
 // Error handling middleware
@@ -442,8 +477,11 @@ async function startHttpServer() {
         console.error(`🚂 Railway URL: ${process.env.RAILWAY_STATIC_URL}`);
       }
       
-      // Log específico para debugging Railway
-      console.error('✅ READY - Servidor respondendo requisições HTTP');
+      // Delay para estabilização sem bloquear o callback
+      setTimeout(() => {
+        console.error('✅ READY - Servidor estável e respondendo requisições HTTP');
+        console.error('🔍 Railway pode fazer health check agora');
+      }, 1000);
     });
 
     // Graceful shutdown melhorado

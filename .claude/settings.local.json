@@ -16,7 +16,10 @@
       "Bash(dotnet restore:*)",
       "Bash(apt list:*)",
       "Bash(ASPNETCORE_ENVIRONMENT=production timeout 10s node dist/http-index.js)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(PORT=8080 ASPNETCORE_ENVIRONMENT=production timeout 10s node dist/http-index.js)",
+      "Bash(cat:*)",
+      "Bash(PORT=8080 ASPNETCORE_ENVIRONMENT=production timeout 15s node dist/http-index.js)"
     ],
     "deny": []
   }
