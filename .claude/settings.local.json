@@ -19,7 +19,12 @@
       "Bash(curl:*)",
       "Bash(PORT=8080 ASPNETCORE_ENVIRONMENT=production timeout 10s node dist/http-index.js)",
       "Bash(cat:*)",
-      "Bash(PORT=8080 ASPNETCORE_ENVIRONMENT=production timeout 15s node dist/http-index.js)"
+      "Bash(PORT=8080 ASPNETCORE_ENVIRONMENT=production timeout 15s node dist/http-index.js)",
+      "Bash(npm run vercel-build:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:spec.modelcontextprotocol.io)",
+      "WebFetch(domain:modelcontextprotocol.io)"
     ],
     "deny": []
   }
