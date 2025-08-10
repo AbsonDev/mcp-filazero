@@ -1,0 +1,850 @@
+{
+  "timestamp": "2025-08-10T22:25:36.153Z",
+  "accessKey": "d6779a60360d455b9af96c1b68e066c5",
+  "baseUrl": "https://mcp-filazero.vercel.app",
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "successRate": "100.0%"
+  },
+  "terminalData": {
+    "id": 854,
+    "name": "Totem sala de espera",
+    "allowPriority": true,
+    "location": {
+      "id": 1483,
+      "name": "Clinica Pisclu",
+      "printingNbaEnabled": false,
+      "showNbaTotemEnabled": false
+    },
+    "provider": {
+      "id": 1043,
+      "name": "LuPisc",
+      "slug": "aracaju-clinica"
+    },
+    "showOptionsBasedOnSessions": false,
+    "ordenationOption": 0,
+    "enableCheckinOption": false,
+    "timezoneId": "America/Sao_Paulo",
+    "optionsDisplay": 0,
+    "services": [
+      {
+        "id": 3606,
+        "name": "CONSULTA",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3607,
+        "name": "CONSULTA ONLINE",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3608,
+        "name": "EXAME",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3609,
+        "name": "EXAME PISCOLOGICO",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3610,
+        "name": "ANSIE",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3611,
+        "name": "CRISE DE PANICO",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3618,
+        "name": "AE",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3619,
+        "name": "JÁ COMPREI, QUERO RETIRAR",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3620,
+        "name": "JÁ COMPREI E QUERO RETIRAR",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3621,
+        "name": "QUERO COMPRAR",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      },
+      {
+        "id": 3622,
+        "name": "ATENDIMENTO RÁPIDO BOTIEXPRESS",
+        "isRecommendDesktop": false,
+        "sessions": [
+          {
+            "id": 2056955,
+            "start": "2025-08-10T11:00:00Z",
+            "end": "2025-08-11T02:55:00Z",
+            "hasSlotsLeft": true
+          }
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "test": "Root Endpoint (/)",
+      "success": {
+        "name": "Filazero MCP Server (SSE)",
+        "protocol": "MCP-SSE",
+        "version": "1.0.0",
+        "transport": [
+          "http",
+          "sse"
+        ],
+        "endpoints": {
+          "GET /": "This documentation",
+          "GET /health": "Health check",
+          "GET /sse": "MCP SSE connection",
+          "POST /mcp": "MCP HTTP requests"
+        },
+        "tools": [
+          "get_terminal",
+          "create_ticket",
+          "get_ticket",
+          "get_queue_position",
+          "get_ticket_prevision",
+          "cancel_ticket",
+          "checkin_ticket",
+          "confirm_presence",
+          "update_feedback",
+          "get_service",
+          "get_company_template"
+        ],
+        "usage": {
+          "cursor": "Use URL: https://your-domain.com with SSE transport",
+          "claude_code": "claude mcp add --transport sse filazero https://your-domain.com/sse"
+        }
+      },
+      "timestamp": "2025-08-10T22:25:33.653Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "age": "0",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "600",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:33 GMT",
+          "etag": "W/\"258-XY8eRWAInOuKME1ed9CwQBtMB3Q\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864733612-bdbd79e06ca4"
+        },
+        "body": "{\"name\":\"Filazero MCP Server (SSE)\",\"protocol\":\"MCP-SSE\",\"version\":\"1.0.0\",\"transport\":[\"http\",\"sse\"],\"endpoints\":{\"GET /\":\"This documentation\",\"GET /health\":\"Health check\",\"GET /sse\":\"MCP SSE connection\",\"POST /mcp\":\"MCP HTTP requests\"},\"tools\":[\"get_terminal\",\"create_ticket\",\"get_ticket\",\"get_queue_position\",\"get_ticket_prevision\",\"cancel_ticket\",\"checkin_ticket\",\"confirm_presence\",\"update_feedback\",\"get_service\",\"get_company_template\"],\"usage\":{\"cursor\":\"Use URL: https://your-domain.com with SSE transport\",\"claude_code\":\"claude mcp add --transport sse filazero https://your-domain.com/sse\"}}",
+        "data": {
+          "name": "Filazero MCP Server (SSE)",
+          "protocol": "MCP-SSE",
+          "version": "1.0.0",
+          "transport": [
+            "http",
+            "sse"
+          ],
+          "endpoints": {
+            "GET /": "This documentation",
+            "GET /health": "Health check",
+            "GET /sse": "MCP SSE connection",
+            "POST /mcp": "MCP HTTP requests"
+          },
+          "tools": [
+            "get_terminal",
+            "create_ticket",
+            "get_ticket",
+            "get_queue_position",
+            "get_ticket_prevision",
+            "cancel_ticket",
+            "checkin_ticket",
+            "confirm_presence",
+            "update_feedback",
+            "get_service",
+            "get_company_template"
+          ],
+          "usage": {
+            "cursor": "Use URL: https://your-domain.com with SSE transport",
+            "claude_code": "claude mcp add --transport sse filazero https://your-domain.com/sse"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Health Endpoint (/health)",
+      "success": true,
+      "timestamp": "2025-08-10T22:25:33.678Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "age": "0",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "208",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:33 GMT",
+          "etag": "W/\"d0-FiFk24ntvP0wyKP3M/w6Y0zFEO4\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864733654-294c5d2c07f5"
+        },
+        "body": "{\"status\":\"healthy\",\"protocol\":\"MCP-SSE\",\"version\":\"1.0.0\",\"timestamp\":\"2025-08-10T22:25:33.673Z\",\"uptime\":133.655860125,\"environment\":\"production\",\"apiUrl\":\"https://api.filazero.net/\",\"nodeEnv\":\"production\"}",
+        "data": {
+          "status": "healthy",
+          "protocol": "MCP-SSE",
+          "version": "1.0.0",
+          "timestamp": "2025-08-10T22:25:33.673Z",
+          "uptime": 133.655860125,
+          "environment": "production",
+          "apiUrl": "https://api.filazero.net/",
+          "nodeEnv": "production"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Terminal",
+      "success": true,
+      "timestamp": "2025-08-10T22:25:34.068Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "4154",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:34 GMT",
+          "etag": "W/\"103a-yMYTGFzsFQQ9urkp4wFsHxS9rLg\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864733680-4188a5c59b6a"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"id\\\": 854,\\n  \\\"name\\\": \\\"Totem sala de espera\\\",\\n  \\\"allowPriority\\\": true,\\n  \\\"location\\\": {\\n    \\\"id\\\": 1483,\\n    \\\"name\\\": \\\"Clinica Pisclu\\\",\\n    \\\"printingNbaEnabled\\\": false,\\n    \\\"showNbaTotemEnabled\\\": false\\n  },\\n  \\\"provider\\\": {\\n    \\\"id\\\": 1043,\\n    \\\"name\\\": \\\"LuPisc\\\",\\n    \\\"slug\\\": \\\"aracaju-clinica\\\"\\n  },\\n  \\\"showOptionsBasedOnSessions\\\": false,\\n  \\\"ordenationOption\\\": 0,\\n  \\\"enableCheckinOption\\\": false,\\n  \\\"timezoneId\\\": \\\"America/Sao_Paulo\\\",\\n  \\\"optionsDisplay\\\": 0,\\n  \\\"services\\\": [\\n    {\\n      \\\"id\\\": 3606,\\n      \\\"name\\\": \\\"CONSULTA\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3607,\\n      \\\"name\\\": \\\"CONSULTA ONLINE\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3608,\\n      \\\"name\\\": \\\"EXAME\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3609,\\n      \\\"name\\\": \\\"EXAME PISCOLOGICO\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3610,\\n      \\\"name\\\": \\\"ANSIE\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3611,\\n      \\\"name\\\": \\\"CRISE DE PANICO\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3618,\\n      \\\"name\\\": \\\"AE\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3619,\\n      \\\"name\\\": \\\"JÁ COMPREI, QUERO RETIRAR\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3620,\\n      \\\"name\\\": \\\"JÁ COMPREI E QUERO RETIRAR\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3621,\\n      \\\"name\\\": \\\"QUERO COMPRAR\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    },\\n    {\\n      \\\"id\\\": 3622,\\n      \\\"name\\\": \\\"ATENDIMENTO RÁPIDO BOTIEXPRESS\\\",\\n      \\\"isRecommendDesktop\\\": false,\\n      \\\"sessions\\\": [\\n        {\\n          \\\"id\\\": 2056955,\\n          \\\"start\\\": \\\"2025-08-10T11:00:00Z\\\",\\n          \\\"end\\\": \\\"2025-08-11T02:55:00Z\\\",\\n          \\\"hasSlotsLeft\\\": true\\n        }\\n      ]\\n    }\\n  ]\\n}\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"id\": 854,\n  \"name\": \"Totem sala de espera\",\n  \"allowPriority\": true,\n  \"location\": {\n    \"id\": 1483,\n    \"name\": \"Clinica Pisclu\",\n    \"printingNbaEnabled\": false,\n    \"showNbaTotemEnabled\": false\n  },\n  \"provider\": {\n    \"id\": 1043,\n    \"name\": \"LuPisc\",\n    \"slug\": \"aracaju-clinica\"\n  },\n  \"showOptionsBasedOnSessions\": false,\n  \"ordenationOption\": 0,\n  \"enableCheckinOption\": false,\n  \"timezoneId\": \"America/Sao_Paulo\",\n  \"optionsDisplay\": 0,\n  \"services\": [\n    {\n      \"id\": 3606,\n      \"name\": \"CONSULTA\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3607,\n      \"name\": \"CONSULTA ONLINE\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3608,\n      \"name\": \"EXAME\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3609,\n      \"name\": \"EXAME PISCOLOGICO\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3610,\n      \"name\": \"ANSIE\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3611,\n      \"name\": \"CRISE DE PANICO\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3618,\n      \"name\": \"AE\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3619,\n      \"name\": \"JÁ COMPREI, QUERO RETIRAR\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3620,\n      \"name\": \"JÁ COMPREI E QUERO RETIRAR\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3621,\n      \"name\": \"QUERO COMPRAR\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    },\n    {\n      \"id\": 3622,\n      \"name\": \"ATENDIMENTO RÁPIDO BOTIEXPRESS\",\n      \"isRecommendDesktop\": false,\n      \"sessions\": [\n        {\n          \"id\": 2056955,\n          \"start\": \"2025-08-10T11:00:00Z\",\n          \"end\": \"2025-08-11T02:55:00Z\",\n          \"hasSlotsLeft\": true\n        }\n      ]\n    }\n  ]\n}"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Service",
+      "success": true,
+      "timestamp": "2025-08-10T22:25:34.240Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "154",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:34 GMT",
+          "etag": "W/\"9a-D1wupQkR70osMn53Lc/xNt0Us1Y\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864734070-60f77edd948f"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"id\\\": 3606,\\n  \\\"name\\\": \\\"CONSULTA\\\",\\n  \\\"isRecommendDesktop\\\": false\\n}\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"id\": 3606,\n  \"name\": \"CONSULTA\",\n  \"isRecommendDesktop\": false\n}"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Company Template",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "null"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:34.409Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "77",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:34 GMT",
+          "etag": "W/\"4d-xp0m35yMqPa/DJM2gz9iCGseXtI\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864734246-039f92f383d9"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"null\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "null"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Create Ticket",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "error": {
+          "code": -32603,
+          "message": "Tool execution failed: POST v2/ticketing/tickets/booking-express falhou [400]: InternalServerError",
+          "data": {
+            "tool": "create_ticket",
+            "arguments": {
+              "terminalSchedule": {
+                "id": 1,
+                "publicAccessKey": "d6779a60360d455b9af96c1b68e066c5",
+                "sessions": [
+                  {
+                    "id": 2056331,
+                    "start": "2025-08-10T22:26:34.409Z",
+                    "end": "2025-08-10T23:25:34.409Z",
+                    "hasSlotsLeft": true
+                  }
+                ]
+              },
+              "pid": 1043,
+              "locationId": 1483,
+              "serviceId": 3606,
+              "customer": {
+                "name": "Test Endpoint User",
+                "phone": "11999888777",
+                "email": "test.endpoint@filazero.com"
+              },
+              "browserUuid": "test-uuid-1754864734409",
+              "priority": 0,
+              "metadata": []
+            }
+          }
+        }
+      },
+      "timestamp": "2025-08-10T22:25:34.871Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "615",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:34 GMT",
+          "etag": "W/\"267-M3B9qCjq2IyVJzmxca8v9Pufito\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::gjzcn-1754864734411-aa6153f4d21c"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":4,\"error\":{\"code\":-32603,\"message\":\"Tool execution failed: POST v2/ticketing/tickets/booking-express falhou [400]: InternalServerError\",\"data\":{\"tool\":\"create_ticket\",\"arguments\":{\"terminalSchedule\":{\"id\":1,\"publicAccessKey\":\"d6779a60360d455b9af96c1b68e066c5\",\"sessions\":[{\"id\":2056331,\"start\":\"2025-08-10T22:26:34.409Z\",\"end\":\"2025-08-10T23:25:34.409Z\",\"hasSlotsLeft\":true}]},\"pid\":1043,\"locationId\":1483,\"serviceId\":3606,\"customer\":{\"name\":\"Test Endpoint User\",\"phone\":\"11999888777\",\"email\":\"test.endpoint@filazero.com\"},\"browserUuid\":\"test-uuid-1754864734409\",\"priority\":0,\"metadata\":[]}}}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 4,
+          "error": {
+            "code": -32603,
+            "message": "Tool execution failed: POST v2/ticketing/tickets/booking-express falhou [400]: InternalServerError",
+            "data": {
+              "tool": "create_ticket",
+              "arguments": {
+                "terminalSchedule": {
+                  "id": 1,
+                  "publicAccessKey": "d6779a60360d455b9af96c1b68e066c5",
+                  "sessions": [
+                    {
+                      "id": 2056331,
+                      "start": "2025-08-10T22:26:34.409Z",
+                      "end": "2025-08-10T23:25:34.409Z",
+                      "hasSlotsLeft": true
+                    }
+                  ]
+                },
+                "pid": 1043,
+                "locationId": 1483,
+                "serviceId": 3606,
+                "customer": {
+                  "name": "Test Endpoint User",
+                  "phone": "11999888777",
+                  "email": "test.endpoint@filazero.com"
+                },
+                "browserUuid": "test-uuid-1754864734409",
+                "priority": 0,
+                "metadata": []
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Ticket",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": 200,\n  \"messages\": [\n    {\n      \"type\": \"ERROR\",\n      \"code\": \"2079\",\n      \"description\": \"O ticket informado não existe.\",\n      \"parameters\": {}\n    }\n  ]\n}"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.177Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "277",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"115-DdFP3ofAPyC0k0HCXtacANIONPU\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::tzrdm-1754864734874-b59721cd6388"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"status\\\": 200,\\n  \\\"messages\\\": [\\n    {\\n      \\\"type\\\": \\\"ERROR\\\",\\n      \\\"code\\\": \\\"2079\\\",\\n      \\\"description\\\": \\\"O ticket informado não existe.\\\",\\n      \\\"parameters\\\": {}\\n    }\\n  ]\\n}\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 5,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\n  \"status\": 200,\n  \"messages\": [\n    {\n      \"type\": \"ERROR\",\n      \"code\": \"2079\",\n      \"description\": \"O ticket informado não existe.\",\n      \"parameters\": {}\n    }\n  ]\n}"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Queue Position",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "null"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.338Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "77",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"4d-evOlpPjgWFST+iuv5N31O4UOzTY\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::mwkjj-1754864735178-2859c840b9c9"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"null\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 6,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "null"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Get Ticket Prevision",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "null"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.498Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "77",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"4d-UegrHx08gALEKQCk8JGS/U+SOgA\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::2fzj5-1754864735340-752a94300746"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"null\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 7,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "null"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Checkin Ticket",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "error": {
+          "code": -32603,
+          "message": "Tool execution failed: POST api/tickets/checkin falhou [405]: The requested resource does not support http method 'POST'.",
+          "data": {
+            "tool": "checkin_ticket",
+            "arguments": {
+              "smartCode": "SC-TEST123",
+              "providerId": 1043
+            }
+          }
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.666Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "272",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"110-OIN9wcaTf+WYN/iVW+C8Nc8ntqY\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::2fzj5-1754864735500-066f2a2e650f"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":8,\"error\":{\"code\":-32603,\"message\":\"Tool execution failed: POST api/tickets/checkin falhou [405]: The requested resource does not support http method 'POST'.\",\"data\":{\"tool\":\"checkin_ticket\",\"arguments\":{\"smartCode\":\"SC-TEST123\",\"providerId\":1043}}}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "error": {
+            "code": -32603,
+            "message": "Tool execution failed: POST api/tickets/checkin falhou [405]: The requested resource does not support http method 'POST'.",
+            "data": {
+              "tool": "checkin_ticket",
+              "arguments": {
+                "smartCode": "SC-TEST123",
+                "providerId": 1043
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Confirm Presence",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "false"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.822Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "78",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"4e-Yar5D0mqYcKnra/OPTylo/BeCOA\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::mwkjj-1754864735668-ba087c2d3946"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"false\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 9,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "false"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Update Feedback",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "error": {
+          "code": -32603,
+          "message": "Tool execution failed: PUT api/feedback/123 falhou [404]: No HTTP resource was found that matches the request URI 'http://localhost:8080/api/feedback/123'.",
+          "data": {
+            "tool": "update_feedback",
+            "arguments": {
+              "feedbackId": 123,
+              "guid": "test-guid-1754864735822",
+              "rate": 5,
+              "comment": "Excellent service - automated test",
+              "platform": "mcp"
+            }
+          }
+        }
+      },
+      "timestamp": "2025-08-10T22:25:35.988Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "388",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:35 GMT",
+          "etag": "W/\"184-E5d/f85LEDnDzCgVXXM48m8dGXc\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::mwkjj-1754864735823-fb8870264209"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":10,\"error\":{\"code\":-32603,\"message\":\"Tool execution failed: PUT api/feedback/123 falhou [404]: No HTTP resource was found that matches the request URI 'http://localhost:8080/api/feedback/123'.\",\"data\":{\"tool\":\"update_feedback\",\"arguments\":{\"feedbackId\":123,\"guid\":\"test-guid-1754864735822\",\"rate\":5,\"comment\":\"Excellent service - automated test\",\"platform\":\"mcp\"}}}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 10,
+          "error": {
+            "code": -32603,
+            "message": "Tool execution failed: PUT api/feedback/123 falhou [404]: No HTTP resource was found that matches the request URI 'http://localhost:8080/api/feedback/123'.",
+            "data": {
+              "tool": "update_feedback",
+              "arguments": {
+                "feedbackId": 123,
+                "guid": "test-guid-1754864735822",
+                "rate": 5,
+                "comment": "Excellent service - automated test",
+                "platform": "mcp"
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test": "Cancel Ticket",
+      "success": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "false"
+            }
+          ]
+        }
+      },
+      "timestamp": "2025-08-10T22:25:36.153Z",
+      "response": {
+        "statusCode": 200,
+        "headers": {
+          "access-control-allow-origin": "*",
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-length": "79",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Sun, 10 Aug 2025 22:25:36 GMT",
+          "etag": "W/\"4f-MEndhdinXG9C3LRbpLptiPHRkz8\"",
+          "server": "Vercel",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-powered-by": "Express",
+          "x-vercel-cache": "MISS",
+          "x-vercel-id": "iad1::iad1::pw2d4-1754864735990-1bedd117ee02"
+        },
+        "body": "{\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"false\"}]}}",
+        "data": {
+          "jsonrpc": "2.0",
+          "id": 11,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "false"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}
