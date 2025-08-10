@@ -14,7 +14,7 @@ interface ReplitConfig {
 
 const config: ReplitConfig = {
   environment: process.env.NODE_ENV || 'production',
-  apiUrl: process.env.FILAZERO_API_URL || 'https://api.staging.filazero.net/',
+  apiUrl: process.env.FILAZERO_API_URL || 'https://api.filazero.net/',
   port: parseInt(process.env.PORT || '3000'),
   healthPort: parseInt(process.env.HEALTH_PORT || '3001'),
   logLevel: process.env.LOG_LEVEL || 'info',

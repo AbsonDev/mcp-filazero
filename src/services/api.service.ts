@@ -6,7 +6,7 @@ export class FilazeroApiService {
 
   constructor() {
     this.client = axios.create({
-      baseURL: 'https://api.staging.filazero.net/',
+      baseURL: config.apiUrl,
       timeout: 30000,
       headers: {
         'Content-Type': 'application/json',
