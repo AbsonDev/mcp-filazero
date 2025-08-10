@@ -72,7 +72,10 @@ class MCPSSEServer {
         protocol: 'MCP-SSE',
         version: '1.0.0',
         timestamp: new Date().toISOString(),
-        uptime: process.uptime()
+        uptime: process.uptime(),
+        environment: config.environment,
+        apiUrl: config.apiUrl,
+        nodeEnv: process.env.NODE_ENV || 'not-set'
       });
     });
 

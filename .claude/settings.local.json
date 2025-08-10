@@ -24,7 +24,10 @@
       "Bash(git add:*)",
       "Bash(git push:*)",
       "WebFetch(domain:spec.modelcontextprotocol.io)",
-      "WebFetch(domain:modelcontextprotocol.io)"
+      "WebFetch(domain:modelcontextprotocol.io)",
+      "Bash(npm run start:mcp:*)",
+      "Bash(pkill:*)",
+      "Bash(ss:*)"
     ],
     "deny": []
   }

@@ -60,7 +60,9 @@ export const RECAPTCHA_CONFIG = {
   useProductionService: process.env.USE_PRODUCTION_RECAPTCHA === 'true' || process.env.NODE_ENV === 'production',
   enableHeadlessBrowser: process.env.ENABLE_HEADLESS_RECAPTCHA === 'true',
   // Habilitar bypass automaticamente em staging/desenvolvimento ou se explicitamente configurado
+  // Em production, permite bypass apenas se explicitamente configurado ou para MCP servers
   bypassValidation: process.env.BYPASS_RECAPTCHA === 'true' || 
+                   process.env.MCP_RECAPTCHA_BYPASS === 'true' ||
                    environment === 'staging' || 
                    environment === 'development' ||
                    environment === 'dev'
