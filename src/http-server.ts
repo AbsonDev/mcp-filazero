@@ -560,4 +560,6 @@ async function startHttpServer() {
   }
 }
 
-export { startHttpServer };
+// Export app para Vercel serverless  
+export default app;
+export { startHttpServer, app };
