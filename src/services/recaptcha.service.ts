@@ -23,12 +23,8 @@ export class RecaptchaService {
     try {
       console.error(`🔐 Generating reCAPTCHA token for action: ${action}`);
       
-      // Usar bypass baseado na configuração de ambiente
-      const shouldUseBypass = process.env.RECAPTCHA_BYPASS_ENABLED === 'true' || 
-                             process.env.NODE_ENV === 'staging' ||
-                             process.env.NODE_ENV === 'development' ||
-                             process.env.NODE_ENV === 'production' ||
-                             process.env.USE_PRODUCTION_RECAPTCHA === 'true';
+      // Usar bypass simplificado - habilitado por padrão para MCP
+      const shouldUseBypass = process.env.DISABLE_RECAPTCHA_BYPASS !== 'true';
 
       if (shouldUseBypass) {
         const envName = process.env.NODE_ENV || 'unknown';

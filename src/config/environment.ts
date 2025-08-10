@@ -13,28 +13,18 @@ export interface EnvironmentConfig {
   smartCodePrefix: string;
 }
 
-// Configuração dinâmica baseada em variáveis de ambiente
+// Configuração simplificada - sempre usar produção
 const environment = process.env.NODE_ENV || 'production';
 
-// Definir URL da API baseada no ambiente ou variável específica
+// API sempre aponta para produção, permite override apenas via variável específica
 function getApiUrl(): string {
-  // Prioridade: 1) FILAZERO_API_URL, 2) Por ambiente, 3) Default produção
+  // Permite override apenas via FILAZERO_API_URL se necessário
   if (process.env.FILAZERO_API_URL) {
     return process.env.FILAZERO_API_URL;
   }
   
-  switch (environment) {
-    case 'development':
-    case 'dev':
-      return 'https://api.dev.filazero.net/';
-    case 'staging':
-    case 'homologation':
-      return 'https://api.staging.filazero.net/';
-    case 'production':
-    case 'prod':
-    default:
-      return 'https://api.filazero.net/';
-  }
+  // Sempre usar produção
+  return 'https://api.filazero.net/';
 }
 
 const API_URL = getApiUrl();
@@ -53,55 +43,26 @@ export const config: EnvironmentConfig = {
   smartCodePrefix: 'SC'
 };
 
-// Configurações específicas do reCAPTCHA por ambiente
+// Configurações do reCAPTCHA - simplificada para MCP
 export const RECAPTCHA_CONFIG = {
   siteKey: '6LfccPMpAAAAAIEhlhoMJsdxym18sXbzRZ4AI9bs',
   secretKey: '6LfccPMpAAAAAMdzEiVxE7mIMODCwV2WIBD6-_zb',
-  useProductionService: process.env.USE_PRODUCTION_RECAPTCHA === 'true' || process.env.NODE_ENV === 'production',
+  useProductionService: true,
   enableHeadlessBrowser: process.env.ENABLE_HEADLESS_RECAPTCHA === 'true',
-  // Habilitar bypass automaticamente em staging/desenvolvimento ou se explicitamente configurado
-  // Em production, permite bypass apenas se explicitamente configurado ou para MCP servers
-  bypassValidation: process.env.BYPASS_RECAPTCHA === 'true' || 
-                   process.env.MCP_RECAPTCHA_BYPASS === 'true' ||
-                   environment === 'staging' || 
-                   environment === 'development' ||
-                   environment === 'dev'
+  // Para MCP servers, sempre habilitar bypass por padrão (pode ser desabilitado se necessário)
+  bypassValidation: process.env.DISABLE_RECAPTCHA_BYPASS !== 'true'
 } as const;
 
-// Providers por ambiente
+// Providers unificados - sempre usar IDs de produção
 function getProviders() {
-  switch (environment) {
-    case 'development':
-    case 'dev':
-      return {
-        artesano: 460,
-        boticario: 358,
-        nike: 356,
-        phoneNoel: 357,
-        queueNoel: 357,
-        filazero: 11  // Provider de teste
-      };
-    case 'staging':
-    case 'homologation':
-      return {
-        artesano: 460,  // IDs de desenvolvimento/staging
-        boticario: 358,
-        nike: 356,
-        phoneNoel: 357,
-        queueNoel: 357,
-        filazero: 11
-      };
-    case 'production':
-    case 'prod':
-    default:
-      return {
-        artesano: 906,
-        boticario: 730,
-        nike: 769,
-        phoneNoel: 777,
-        queueNoel: 776
-      };
-  }
+  return {
+    artesano: 906,
+    boticario: 730,
+    nike: 769,
+    phoneNoel: 777,
+    queueNoel: 776,
+    filazero: 906  // Usar Artesano como fallback para testes
+  };
 }
 
 export const PROVIDERS = getProviders();
