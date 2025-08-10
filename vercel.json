@@ -1,9 +1,7 @@
 {
-  "version": 2,
-  "name": "filazero-mcp-server",
   "builds": [
     {
-      "src": "api/*.js",
+      "src": "api/index.js",
       "use": "@vercel/node"
     }
   ],
@@ -12,15 +10,5 @@
       "src": "/(.*)",
       "dest": "/api/index.js"
     }
-  ],
-  "buildCommand": "npm run vercel-build",
-  "env": {
-    "NODE_ENV": "production",
-    "ASPNETCORE_ENVIRONMENT": "production"
-  },
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
