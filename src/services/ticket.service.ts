@@ -14,8 +14,30 @@ export class TicketService {
     try {
       console.log(`🎫 Criando ticket para ${request.customer.name}...`);
       
-      // Generate reCAPTCHA token server-side if not provided or invalid
+      // Corrigir formato do terminalSchedule se necessário
       let finalRequest = { ...request };
+      
+      // Se terminalSchedule tem sessionId em vez de id, corrigir
+      if (finalRequest.terminalSchedule && 'sessionId' in finalRequest.terminalSchedule) {
+        const ts = finalRequest.terminalSchedule as any;
+        console.log('🔧 Corrigindo formato do terminalSchedule...');
+        
+        finalRequest.terminalSchedule = {
+          id: ts.sessionId || ts.id,
+          publicAccessKey: ts.publicAccessKey,
+          sessions: ts.sessions || [{
+            id: ts.sessionId || ts.id,
+            start: ts.start || "2025-08-10T11:00:00Z",
+            end: ts.end || "2025-08-11T02:30:00Z", 
+            hasSlotsLeft: true
+          }]
+        };
+        
+        console.log('✅ TerminalSchedule corrigido:', JSON.stringify(finalRequest.terminalSchedule, null, 2));
+      }
+      
+      // Generate reCAPTCHA token server-side if not provided or invalid
+      // let finalRequest = { ...request };
       
       if (!request.recaptcha || request.recaptcha.length < 100 || request.recaptcha.startsWith('bypass_') || request.recaptcha.includes('03AGdBq2')) {
         console.log('🔐 Generating server-side reCAPTCHA token...');
