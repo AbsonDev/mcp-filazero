@@ -13,8 +13,17 @@ import config from './config/environment.js';
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000');
 
-// Log da porta para debugging
+// Log da porta e configurações Railway para debugging
 console.error(`🔧 Configuração de porta: ${PORT} (Railway: ${process.env.PORT ? 'detectado' : 'padrão'})`);
+console.error(`🚂 Railway Environment: ${process.env.RAILWAY_ENVIRONMENT || 'não detectado'}`);
+console.error(`🌐 Railway Static URL: ${process.env.RAILWAY_STATIC_URL || 'não detectado'}`);
+
+// Configurações específicas do Railway
+if (process.env.RAILWAY_ENVIRONMENT) {
+  // Configurações otimizadas para Railway
+  app.set('trust proxy', 1); // Trust Railway proxy
+  console.error('✅ Configurações Railway aplicadas: trust proxy habilitado');
+}
 
 // Middleware
 app.use(cors());
@@ -77,6 +86,35 @@ app.get('/ping', (req, res) => {
     timestamp: new Date().toISOString(),
     ready: true 
   });
+});
+
+// Endpoint /status (padrão de muitas plataformas)
+app.get('/status', (req, res) => {
+  console.error(`📊 Status request: ${req.method} ${req.url} from ${req.ip}`);
+  res.status(200).json({
+    status: 'healthy',
+    service: 'filazero-mcp-server',
+    version: '1.0.0',
+    uptime: process.uptime(),
+    ready: true,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Endpoint /ready (Kubernetes style health check)
+app.get('/ready', (req, res) => {
+  console.error(`🚀 Ready request: ${req.method} ${req.url} from ${req.ip}`);
+  res.status(200).json({
+    ready: true,
+    status: 'healthy',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Health check em texto simples para compatibilidade máxima
+app.get('/healthz', (req, res) => {
+  console.error(`💚 Healthz request: ${req.method} ${req.url} from ${req.ip}`);
+  res.status(200).type('text/plain').send('OK');
 });
 
 // MCP Tools endpoint para Cursor
@@ -408,35 +446,50 @@ app.post('/mcp', async (req, res) => {
 
 // Endpoint raiz otimizado para Railway health check
 app.get('/', (req, res) => {
-  // Log para debugging Railway health check
-  console.error(`🔍 Health check request: ${req.method} ${req.url} from ${req.ip}`);
+  // Resposta otimizada para health check rápido
+  const isHealthCheck = req.get('User-Agent')?.includes('curl') || 
+                       req.get('User-Agent')?.includes('Railway') ||
+                       req.get('User-Agent')?.includes('wget');
   
-  // Resposta rápida e simples para Railway
-  const response = {
-    status: 'healthy',
-    name: 'Filazero MCP Server HTTP',
-    version: '1.0.0',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    ready: true,
-    environment: config.environment,
-    port: PORT,
-    endpoints: {
-      'GET /': 'Health check / Documentation',
-      'GET /health': 'Detailed health status',
-      'GET /ping': 'Simple ping pong',
-      'GET /tools': 'Lista todas as tools MCP',
-      'POST /mcp': 'Execute MCP tools'
-    },
-    mcp: {
-      tools_count: 11,
-      cursor_url: process.env.RAILWAY_STATIC_URL || 'Configure Railway URL',
-      usage: 'POST /mcp with {"tool": "tool_name", "arguments": {...}}'
-    }
-  };
-  
-  // Enviar resposta rapidamente
-  res.status(200).json(response);
+  if (isHealthCheck) {
+    // Resposta mínima para health check
+    return res.status(200).json({
+      status: 'healthy',
+      ready: true,
+      service: 'filazero-mcp-server',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime()
+    });
+  } else {
+    // Resposta completa para browsers/documentação
+    const response = {
+      status: 'healthy',
+      name: 'Filazero MCP Server HTTP',
+      version: '1.0.0',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      ready: true,
+      environment: config.environment,
+      port: PORT,
+      endpoints: {
+        'GET /': 'Health check / Documentation',
+        'GET /health': 'Detailed health status', 
+        'GET /ping': 'Simple ping pong',
+        'GET /status': 'Service status',
+        'GET /ready': 'Readiness check',
+        'GET /healthz': 'Simple health check',
+        'GET /tools': 'Lista todas as tools MCP',
+        'POST /mcp': 'Execute MCP tools'
+      },
+      mcp: {
+        tools_count: 11,
+        cursor_url: process.env.RAILWAY_STATIC_URL || 'Configure Railway URL',
+        usage: 'POST /mcp with {"tool": "tool_name", "arguments": {...}}'
+      }
+    };
+    
+    return res.status(200).json(response);
+  }
 });
 
 // Error handling middleware
@@ -477,11 +530,9 @@ async function startHttpServer() {
         console.error(`🚂 Railway URL: ${process.env.RAILWAY_STATIC_URL}`);
       }
       
-      // Delay para estabilização sem bloquear o callback
-      setTimeout(() => {
-        console.error('✅ READY - Servidor estável e respondendo requisições HTTP');
-        console.error('🔍 Railway pode fazer health check agora');
-      }, 1000);
+      // Servidor imediatamente pronto para health checks
+      console.error('✅ READY - Servidor respondendo requisições HTTP IMEDIATAMENTE');
+      console.error('🔍 Railway pode fazer health check AGORA em: /, /health, /ping, /status, /ready, /healthz');
     });
 
     // Graceful shutdown melhorado

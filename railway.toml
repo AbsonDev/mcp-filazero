@@ -1,0 +1,25 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm run start:http"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[env]
+NODE_ENV = "production"
+ASPNETCORE_ENVIRONMENT = "production"
+
+# Configurações de health check explícitas
+[deploy.healthcheck]
+path = "/health"
+port = "$PORT"
+intervalSeconds = 30
+timeoutSeconds = 10
+retries = 3
+startPeriod = 15
+
+# Configurações alternativas para testar
+[deploy.healthcheck.fallback]
+path = "/healthz"
+port = "$PORT"
