@@ -1,25 +1,24 @@
-# 🚀 Filazero MCP Server - Node.js/TypeScript
+# 🚀 Filazero MCP Server
 
-Servidor MCP (Model Context Protocol) para integração com as APIs do sistema Filazero Express, migrado de .NET para Node.js/TypeScript para melhor performance e simplicidade.
+Servidor MCP (Model Context Protocol) para integração com as APIs do sistema Filazero Express. Desenvolvido em Node.js/TypeScript para máxima performance e simplicidade.
 
 ## ✨ Características
 
-- ✅ **Alto Performance**: 6-10x mais rápido que a versão .NET
-- ✅ **Baixo Consumo**: 60% menos uso de memória
-- ✅ **Código Limpo**: 70% menos código que a versão .NET
-- ✅ **SDK Oficial**: Usa SDK nativo da Anthropic para MCP
-- ✅ **TypeScript**: Tipagem forte e melhor DX
+- ✅ **Alto Performance**: Servidor otimizado com resposta rápida
+- ✅ **TypeScript**: Tipagem forte e desenvolvimento seguro
+- ✅ **SDK Oficial MCP**: Integração nativa da Anthropic
 - ✅ **Multi-ambiente**: Development, Staging e Production
+- ✅ **Flexível**: Suporte a HTTP e MCP SSE
 
 ## 🛠️ Tecnologias
 
 - **Node.js 18+**: Runtime JavaScript
-- **TypeScript**: Linguagem principal
+- **TypeScript**: Linguagem principal  
 - **@modelcontextprotocol/sdk**: SDK oficial MCP
 - **Axios**: Cliente HTTP
-- **ts-node**: Execução direta de TypeScript
+- **Express**: Servidor HTTP (modo alternativo)
 
-## 📦 Instalação
+## 📦 Instalação e Setup
 
 ### Pré-requisitos
 
@@ -27,11 +26,11 @@ Servidor MCP (Model Context Protocol) para integração com as APIs do sistema F
 # Node.js 18 ou superior
 node --version  # v18.0.0+
 
-# npm atualizado
+# npm atualizado  
 npm --version   # 9.0.0+
 ```
 
-### Setup
+### Instalação
 
 ```bash
 # Instalar dependências
@@ -40,28 +39,23 @@ npm install
 # Compilar TypeScript
 npm run build
 
+# Executar servidor MCP
+npm start
+
 # Executar em desenvolvimento
 npm run dev
-
-# Executar em produção
-npm start
 ```
 
 ## 🔧 Configuração
 
-### Variáveis de Ambiente
+### Ambientes Disponíveis
 
-O projeto suporta diferentes ambientes via `NODE_ENV`:
+Configure via `NODE_ENV`:
 
 ```bash
-# Desenvolvimento (padrão)
-NODE_ENV=development
-
-# Staging
-NODE_ENV=staging
-
-# Produção
-NODE_ENV=production
+NODE_ENV=development  # Padrão
+NODE_ENV=staging     
+NODE_ENV=production   
 ```
 
 ### URLs por Ambiente
@@ -74,7 +68,7 @@ NODE_ENV=production
 
 #### Development/Staging
 - **Artesano**: 460
-- **O Boticário**: 358
+- **O Boticário**: 358  
 - **Nike**: 356
 - **Noel**: 357
 
@@ -86,126 +80,34 @@ NODE_ENV=production
 
 ## 🎯 Tools MCP Disponíveis
 
-### 1. Terminal Operations
+### Terminal Operations
+- `get_terminal` - Buscar terminal por chave de acesso
+- `get_service` - Obter informações de serviço
+- `get_company_template` - Template visual da empresa
 
-#### `get_terminal`
-```json
-{
-  "accessKey": "ABC123"
-}
-```
+### Ticket Operations  
+- `create_ticket` - Criar novo ticket via booking express
+- `get_ticket` - Buscar ticket por ID
+- `get_queue_position` - Consultar posição na fila
+- `get_ticket_prevision` - Previsão de atendimento
+- `cancel_ticket` - Cancelar ticket existente
+- `checkin_ticket` - Check-in usando smart code
+- `confirm_presence` - Confirmar presença do cliente
 
-#### `get_service`
-```json
-{
-  "id": 12345
-}
-```
-
-#### `get_company_template`
-```json
-{
-  "slug": "artesano"
-}
-```
-
-### 2. Ticket Operations
-
-#### `create_ticket`
-```json
-{
-  "terminalSchedule": {
-    "id": 123,
-    "publicAccessKey": "ABC123"
-  },
-  "pid": 460,
-  "locationId": 789,
-  "serviceId": 456,
-  "customer": {
-    "name": "João Silva",
-    "phone": "11999887766",
-    "email": "joao@email.com"
-  },
-  "recaptcha": "03AGdBq...",
-  "priority": 0,
-  "metadata": [],
-  "browserUuid": "uuid-here"
-}
-```
-
-#### `get_ticket`
-```json
-{
-  "id": 12345
-}
-```
-
-#### `get_queue_position`
-```json
-{
-  "providerId": 460,
-  "ticketId": 12345
-}
-```
-
-#### `get_ticket_prevision`
-```json
-{
-  "ticketId": 12345
-}
-```
-
-#### `cancel_ticket`
-```json
-{
-  "ticketId": 12345,
-  "providerId": 460,
-  "cancellation": "Cliente cancelou"
-}
-```
-
-#### `checkin_ticket`
-```json
-{
-  "smartCode": "SC-ABC123",
-  "providerId": 460
-}
-```
-
-#### `confirm_presence`
-```json
-{
-  "ticketId": 12345,
-  "providerId": 460
-}
-```
-
-### 3. Feedback Operations
-
-#### `update_feedback`
-```json
-{
-  "feedbackId": 789,
-  "guid": "uuid-guid-here",
-  "comment": "Excelente atendimento!",
-  "rate": 5,
-  "platform": "mcp"
-}
-```
+### Feedback Operations
+- `update_feedback` - Atualizar feedback do atendimento
 
 ## 🤖 Configuração MCP para Claude
-
-### Claude Desktop
 
 Adicione ao seu `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "filazero-nodejs": {
+    "filazero": {
       "command": "node",
-      "args": ["dist/index.js"],
-      "cwd": "/caminho/para/filazero-mcp-nodejs",
+      "args": ["dist/mcp-sse-index.js"],
+      "cwd": "/caminho/para/mcp-filazero",
       "env": {
         "NODE_ENV": "development"
       }
@@ -214,15 +116,15 @@ Adicione ao seu `claude_desktop_config.json`:
 }
 ```
 
-### Para Desenvolvimento (com reload automático)
+### Para Desenvolvimento
 
 ```json
 {
   "mcpServers": {
-    "filazero-nodejs-dev": {
+    "filazero-dev": {
       "command": "npm",
       "args": ["run", "dev"],
-      "cwd": "/caminho/para/filazero-mcp-nodejs",
+      "cwd": "/caminho/para/mcp-filazero",
       "env": {
         "NODE_ENV": "development"
       }
@@ -231,127 +133,121 @@ Adicione ao seu `claude_desktop_config.json`:
 }
 ```
 
-## 📊 Comparativo vs .NET
-
-| Aspecto | .NET | Node.js | Melhoria |
-|---------|------|---------|----------|
-| **Startup Time** | 3-5s | 300-500ms | **6-10x mais rápido** |
-| **Memória** | 45-60MB | 15-25MB | **60% menos uso** |
-| **Linhas de código** | ~2.500 | ~800 | **70% menos código** |
-| **Complexidade** | Alta | Baixa | **Muito mais simples** |
-| **SDK MCP** | Implementação manual | SDK oficial | **Nativo** |
-
 ## 🚀 Scripts Disponíveis
 
+### MCP (Principal)
 ```bash
-# Desenvolvimento com reload automático
-npm run dev
+npm start                # Executar servidor MCP
+npm run dev              # Desenvolvimento com reload
+npm run dev:mcp          # Build + servidor MCP
+```
 
-# Compilar TypeScript
-npm run build
+### HTTP (Alternativo)
+```bash
+npm run start:http       # Servidor HTTP
+npm run dev:http         # Desenvolvimento HTTP
+```
 
-# Executar produção
-npm start
+### Desenvolvimento
+```bash
+npm run build            # Compilar TypeScript
+npm run watch            # Watch mode
+npm run lint             # Lint do código
+npm run format           # Formatar código
+```
 
-# Watch mode para desenvolvimento
-npm run watch
-
-# Lint do código
-npm run lint
-
-# Formatar código
-npm run format
-
-# Teste básico
-npm run test
+### Plataformas
+```bash
+npm run replit           # Deploy Replit
+npm run railway          # Deploy Railway  
+npm run vercel-build     # Build Vercel
 ```
 
 ## 📁 Estrutura do Projeto
 
 ```
-filazero-mcp-nodejs/
+mcp-filazero/
 ├── src/
-│   ├── config/
-│   │   └── environment.ts       # Configurações por ambiente
-│   ├── models/
-│   │   ├── filazero.types.ts    # Tipos das APIs Filazero
-│   │   └── mcp.types.ts         # Tipos MCP
-│   ├── services/
-│   │   ├── api.service.ts       # Cliente HTTP
-│   │   ├── terminal.service.ts  # Operações de terminal
-│   │   ├── ticket.service.ts    # Operações de tickets
-│   │   └── feedback.service.ts  # Operações de feedback
-│   └── index.ts                 # Servidor MCP principal
-├── dist/                        # Código compilado
-├── config/                      # Configurações de ambiente
+│   ├── config/              # Configurações por ambiente
+│   │   ├── environment.ts   # Config principal
+│   │   ├── providers.ts     # Provider IDs
+│   │   └── *.ts            # Configs específicas
+│   ├── models/             # Tipos TypeScript
+│   │   ├── filazero.types.ts
+│   │   └── mcp.types.ts
+│   ├── services/           # Serviços da aplicação
+│   │   ├── api.service.ts
+│   │   ├── terminal.service.ts
+│   │   ├── ticket.service.ts
+│   │   ├── feedback.service.ts
+│   │   └── recaptcha*.ts
+│   ├── index.ts            # Servidor MCP básico
+│   ├── mcp-sse-index.ts    # Servidor MCP SSE (principal)
+│   ├── mcp-sse-server.ts   # Implementação MCP SSE
+│   ├── http-index.ts       # Servidor HTTP
+│   └── http-server.ts      # Implementação HTTP
+├── config/                 # Configurações de ambiente
+├── scripts/               # Scripts de deploy
+├── dist/                  # Código compilado
 ├── package.json
 ├── tsconfig.json
-└── mcp-config.json             # Configuração MCP
+└── README.md
 ```
 
 ## 🧪 Testando o Servidor
 
-### 1. Teste básico de inicialização
+### 1. Teste Local
 
 ```bash
 npm start
 ```
 
-Deve mostrar:
+Deve exibir:
 ```
-🚀 Filazero MCP Server (Node.js) iniciado!
-📡 Ambiente: development
+🚀 Filazero MCP Server iniciado!
+📡 Ambiente: development  
 🔗 API URL: https://api.dev.filazero.net/
-🛠️ Total de tools: 11
-💡 Servidor pronto para receber comandos MCP...
+🛠️ Tools disponíveis: 11
+💡 Aguardando comandos MCP...
 ```
 
 ### 2. Teste com Claude
 
-No Claude, use comandos como:
+Exemplos de comandos:
 - "Buscar terminal com chave ABC123"
-- "Criar ticket para João Silva no terminal ABC123"
+- "Criar ticket para João Silva no terminal ABC123"  
 - "Consultar posição do ticket 12345"
+- "Cancelar ticket 12345"
 
-## 🔐 Segurança
+## 🚢 Deploy
 
-- ✅ **Validação de tipos**: TypeScript garante tipagem correta
-- ✅ **Tratamento de erros**: Errors handlers robustos
-- ✅ **Logs estruturados**: Logging detalhado para debug
-- ✅ **Timeouts**: Timeout de 30s nas requisições HTTP
-
-## 📈 Monitoramento
-
-### Logs Disponíveis
-
-- 🔍 **Request logs**: Todas as chamadas HTTP
-- ✅ **Success logs**: Operações bem-sucedidas  
-- ❌ **Error logs**: Falhas detalhadas
-- 🛠️ **Tool execution**: Execução de tools MCP
-
-### Exemplo de Log
-
-```
-🛠️ Executando tool: get_terminal
-📝 Argumentos: {"accessKey":"ABC123"}
-🔍 GET api/v1/terminal/ABC123
-✅ 200 api/v1/terminal/ABC123
-✅ Terminal encontrado: Terminal Principal (ID: 123)
-✅ Tool get_terminal executada com sucesso
+### Railway
+```bash
+npm run railway
 ```
 
-## 🤝 Contribuindo
+### Replit  
+```bash
+npm run replit
+```
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+### Vercel
+```bash
+npm run vercel-build
+```
+
+## 🔐 Segurança e Monitoramento
+
+- ✅ **Validação TypeScript**: Tipagem forte
+- ✅ **Error Handling**: Tratamento robusto de erros
+- ✅ **Logging**: Logs estruturados para debug
+- ✅ **Timeouts**: Timeout de 30s nas requisições
+- ✅ **Health Checks**: Endpoint de saúde disponível
 
 ## 📜 Licença
 
-Este projeto está sob a licença MIT.
+MIT License - veja arquivo LICENSE para detalhes.
 
 ---
 
-**🎯 Resultado: Servidor MCP mais rápido, leve e fácil de manter, mantendo 100% das funcionalidades da versão .NET!**
+**🎯 Servidor MCP otimizado para integração perfeita com Claude Desktop e APIs Filazero!**
