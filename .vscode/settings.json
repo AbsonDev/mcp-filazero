@@ -1,0 +1,33 @@
+{
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/dist": false,
+    "**/.git": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": false
+  },
+  "files.associations": {
+    "*.ts": "typescript",
+    "*.js": "javascript"
+  },
+  "emmet.includeLanguages": {
+    "typescript": "html"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "typescript": true,
+    "javascript": true,
+    "json": true
+  }
+}

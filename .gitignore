@@ -15,7 +15,6 @@ build/
 .env.staging
 
 # IDE files
-.vscode/
 .idea/
 *.swp
 *.swo
